@@ -1,0 +1,3 @@
+ hasOwnProperty: function () {
+  //     return false;
+  //   },

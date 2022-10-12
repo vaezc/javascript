@@ -1,42 +1,35 @@
-// var Counter = (function () {
-//   var privateCounter = 0;
+// 闭包的定义，闭包是当前函数内对外部状态（词法作用域）的捆绑称为闭包。
 
-//   function changeBy(val) {
-//     privateCounter += val;
-//   }
+// 作用：
+//闭包模拟私有方法
+var Counter = (function () {
+  var privateCounter = 0;
 
-//   return {
-//     increment: function () {
-//       changeBy(1);
-//     },
-//     decrement: function () {
-//       changeBy(-1);
-//     },
-//     value: function () {
-//       return privateCounter;
-//     },
-//   };
-// })();
+  function changeBy(val) {
+    privateCounter += val;
+  }
 
-// // console.log(Counter.value())
-// // Counter.increment()
-// // Counter.increment()
-// // console.log(Counter.value())
+  return {
+    increment: function () {
+      changeBy(1);
+    },
+    decrement: function () {
+      changeBy(-1);
+    },
+    value: function () {
+      return privateCounter;
+    },
+  };
+})();
 
-// // 作用域分为两种 全局作用域和函数作用域
+// 创建块级作用域
 
-// //变量提升，未声明变量直接赋值会将该变量提升到全局范围。
+// 缺点： 内存泄漏，手动销毁置为空。
 
-// function test() {
-//   a = 1;
-//   {
-//     let b = 2;
-//   }
-//   console.log(b);
-// }
-// test();
-
-// console.log(a);
+// console.log(Counter.value())
+// Counter.increment()
+// Counter.increment()
+// console.log(Counter.value())
 
 function makeAdd(num) {
   return function (second) {
@@ -45,18 +38,4 @@ function makeAdd(num) {
 }
 
 const addTwo = makeAdd(10);
-console.log(addTwo(30));
-
-class Person {}
-class Employee extends Person {}
-class Developer extends Employee {}
-const tom = new Developer();
-
-console.log(tom.__proto__ === Developer.prototype);
-console.log(tom.__proto__ === Employee.prototype);
-console.log(Developer.isPrototypeOf(tom));
-console.log(Developer.prototype.isPrototypeOf(tom));
-console.log(Employee.prototype.isPrototypeOf(tom));
-console.log(Person.prototype.isPrototypeOf(tom));
-console.log(Object.prototype.isPrototypeOf(tom));
-console.log(Developer.__proto__ === Employee);
+// console.log(addTwo(30));
